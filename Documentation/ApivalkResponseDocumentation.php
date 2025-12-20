@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+namespace apivalk\ApivalkPHP\Documentation;
+
+use apivalk\ApivalkPHP\Documentation\Property\AbstractProperty;
+
+class ApivalkResponseDocumentation
+{
+    /** @var string|null */
+    private $description;
+    /** @var AbstractProperty[] */
+    private $properties = [];
+    /** @var bool */
+    private $hasResponsePagination = false;
+
+    public function addProperty(AbstractProperty $parameter): void
+    {
+        $this->properties[] = $parameter;
+    }
+
+    public function setHasResponsePagination(bool $hasResponsePagination): void
+    {
+        $this->hasResponsePagination = $hasResponsePagination;
+    }
+
+    public function getProperties(): array
+    {
+        return $this->properties;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function hasResponsePagination(): bool
+    {
+        return $this->hasResponsePagination;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+}

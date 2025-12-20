@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace apivalk\ApivalkPHP\Tests\PhpUnit\Documentation\Property\Validator;
+
+use PHPUnit\Framework\TestCase;
+use apivalk\ApivalkPHP\Documentation\Property\Validator\ValidatorResult;
+
+class ValidatorResultTest extends TestCase
+{
+    public function testValidatorResult()
+    {
+        $result = new ValidatorResult(true);
+        $this->assertTrue($result->isSuccess());
+        $this->assertNull($result->getMessage());
+
+        $result = new ValidatorResult(false, ValidatorResult::VALUE_IS_NOT_NUMERIC);
+        $this->assertFalse($result->isSuccess());
+        $this->assertEquals(ValidatorResult::VALUE_IS_NOT_NUMERIC, $result->getMessage());
+    }
+}

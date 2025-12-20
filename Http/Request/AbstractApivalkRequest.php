@@ -1,0 +1,86 @@
+<?php
+
+declare(strict_types=1);
+
+namespace apivalk\ApivalkPHP\Http\Request;
+
+use apivalk\ApivalkPHP\Documentation\ApivalkRequestDocumentation;
+use apivalk\ApivalkPHP\Http\Method\MethodInterface;
+use apivalk\ApivalkPHP\Http\Request\File\FileBag;
+use apivalk\ApivalkPHP\Http\Request\File\FileBagFactory;
+use apivalk\ApivalkPHP\Http\Request\Parameter\ParameterBag;
+use apivalk\ApivalkPHP\Http\Request\Parameter\ParameterBagFactory;
+use apivalk\ApivalkPHP\Security\AbstractAuthIdentity;
+use apivalk\ApivalkPHP\Router\Route;
+
+abstract class AbstractApivalkRequest implements ApivalkRequestInterface
+{
+    /** @var MethodInterface|null */
+    private $method;
+    /** @var ParameterBag|null */
+    private $headerBag;
+    /** @var ParameterBag|null */
+    private $queryParameterBag;
+    /** @var ParameterBag|null */
+    private $bodyParameterBag;
+    /** @var ParameterBag|null */
+    private $pathParameterBag;
+    /** @var FileBag|null */
+    private $fileBag;
+    /** @var AbstractAuthIdentity|null */
+    private $authIdentity;
+
+    abstract public static function getDocumentation(): ApivalkRequestDocumentation;
+
+    public function populate(Route $route): void
+    {
+        $documentation = static::getDocumentation();
+
+        $this->method = $route->getMethod();
+        $this->headerBag = ParameterBagFactory::createHeaderBag();
+        $this->queryParameterBag = ParameterBagFactory::createQueryBag($documentation);
+        $this->pathParameterBag = ParameterBagFactory::createPathBag($route, $documentation);
+        $this->bodyParameterBag = ParameterBagFactory::createBodyBag($documentation);
+        $this->fileBag = FileBagFactory::create();
+    }
+
+    public function getMethod(): MethodInterface
+    {
+        return $this->method;
+    }
+
+    public function header(): ParameterBag
+    {
+        return $this->headerBag;
+    }
+
+    public function query(): ParameterBag
+    {
+        return $this->queryParameterBag;
+    }
+
+    public function body(): ParameterBag
+    {
+        return $this->bodyParameterBag;
+    }
+
+    public function path(): ParameterBag
+    {
+        return $this->pathParameterBag;
+    }
+
+    public function file(): FileBag
+    {
+        return $this->fileBag;
+    }
+
+    public function getAuthIdentity(): ?AbstractAuthIdentity
+    {
+        return $this->authIdentity;
+    }
+
+    public function setAuthIdentity(?AbstractAuthIdentity $authIdentity): void
+    {
+        $this->authIdentity = $authIdentity;
+    }
+}

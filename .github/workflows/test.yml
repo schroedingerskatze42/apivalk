@@ -1,0 +1,42 @@
+name: Test
+on: [pull_request]
+
+jobs:
+  test:
+    name: PHPUnit (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['7.2']
+        phpunit: ['7.5']
+
+    env:
+      PHP_EXTENSIONS: 'json mbstring'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('composer.lock') }}
+
+      - name: Installing dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php }}
+          php_extensions: ${{ env.PHP_EXTENSIONS }}
+
+      - name: Running unit test
+        uses: php-actions/phpunit@v3
+        with:
+          version: ${{ matrix.phpunit }}
+          php_version: ${{ matrix.php }}
+          php_extensions: ${{ env.PHP_EXTENSIONS }}
+          args: "-d date.timezone=Europe/Berlin"
+          memory_limit: 300M
+          configuration: phpunit.xml
+          testsuite: "Apivalk Unit Tests"
