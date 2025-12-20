@@ -59,8 +59,8 @@ class DocBlockRequestTest extends TestCase
 
         $filenames = $request->getShapeFilenames('src/Api');
 
-        $this->assertEquals('src/Api/UserPathShape.php', $filenames['path']);
-        $this->assertEquals('src/Api/UserQueryShape.php', $filenames['query']);
-        $this->assertEquals('src/Api/UserBodyShape.php', $filenames['body']);
+        $this->assertEquals('src/Api/Shape/UserPathShape.php', $filenames['path']);
+        $this->assertEquals('src/Api/Shape/UserQueryShape.php', $filenames['query']);
+        $this->assertEquals('src/Api/Shape/UserBodyShape.php', $filenames['body']);
     }
 }

@@ -1,6 +1,5 @@
 {
   "name": "apivalk/apivalk",
-  "type": "project",
   "archive": {
     "exclude": [
       "/.github",

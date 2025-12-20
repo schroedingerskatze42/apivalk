@@ -67,9 +67,9 @@ PHP;
     public function getShapeFilenames(string $requestFolder): array
     {
         return [
-            'path' => \sprintf('%s/%s.php', $requestFolder, $this->pathShape->getClassName()),
-            'query' => \sprintf('%s/%s.php', $requestFolder, $this->queryShape->getClassName()),
-            'body' => \sprintf('%s/%s.php', $requestFolder, $this->bodyShape->getClassName()),
+            'path' => \sprintf('%s/Shape/%s.php', $requestFolder, $this->pathShape->getClassName()),
+            'query' => \sprintf('%s/Shape/%s.php', $requestFolder, $this->queryShape->getClassName()),
+            'body' => \sprintf('%s/Shape/%s.php', $requestFolder, $this->bodyShape->getClassName()),
         ];
     }
 }
