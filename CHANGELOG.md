@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.1.1](https://github.com/apivalk/apivalk/compare/v1.1.0...v1.1.1) (2025-12-20)
+
+
+### Bug Fixes
+
+* **composer:** remove redundant version field from composer.json ([e754f51](https://github.com/apivalk/apivalk/commit/e754f511b220c02fea1a7ea747629273e03e4856))
+
 ## 1.1.0 (2025-12-20)
 
 
