@@ -26,7 +26,7 @@ final class ClassLocator
     }
 
     /**
-     * @return array{className: string, path: string}
+     * @return array<int, array{className: string, path: string}>
      */
     public function findClasses(): array
     {

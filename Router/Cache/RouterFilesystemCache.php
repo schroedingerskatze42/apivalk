@@ -62,8 +62,8 @@ class RouterFilesystemCache implements RouterCacheInterface
 
         $routerCacheCollection = new RouterCacheCollection();
 
-        /** @var class-string<AbstractApivalkController> $className */
         foreach ($classesInNamespace as $class) {
+            /** @var class-string<AbstractApivalkController> $className */
             $className = $class['className'];
 
             if (!is_subclass_of($className, AbstractApivalkController::class)) {
