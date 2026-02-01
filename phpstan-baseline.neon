@@ -297,6 +297,11 @@ parameters:
 			path: Documentation/Response/ValidationErrorObjectPropertyCollection.php
 
 		-
+			message: "#^Constructor of class apivalk\\\\apivalk\\\\Documentation\\\\Response\\\\ErrorObjectPropertyCollection has an unused parameter \\$mode\\.$#"
+			count: 1
+			path: Documentation/Response/ErrorObjectPropertyCollection.php
+
+		-
 			message: "#^Class apivalk\\\\apivalk\\\\Http\\\\Request\\\\File\\\\FileBag implements generic interface IteratorAggregate but does not specify its types\\: TKey, TValue$#"
 			count: 1
 			path: Http/Request/File/FileBag.php
