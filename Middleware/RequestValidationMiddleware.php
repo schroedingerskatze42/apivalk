@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace apivalk\apivalk\Middleware;
 
+use apivalk\apivalk\Documentation\Property\AbstractProperty;
 use apivalk\apivalk\Documentation\Property\Validator\ValidatorResult;
 use apivalk\apivalk\Http\Controller\AbstractApivalkController;
 use apivalk\apivalk\Http\Request\Parameter\ParameterBag;
@@ -52,6 +53,7 @@ class RequestValidationMiddleware implements MiddlewareInterface
         array $properties,
         ParameterBag $parameterBag
     ): void {
+        /** @var AbstractProperty $property */
         foreach ($properties as $property) {
             $parameter = $parameterBag->get($property->getPropertyName());
 
